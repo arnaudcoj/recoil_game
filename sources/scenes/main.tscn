@@ -5,22 +5,22 @@
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
-points = Vector2Array( -24, 624, 0, 0, 0, 600 )
+points = Vector2Array( 0, 0, -24, -24, 1044, -24, 1020, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 1044, 624, -24, 624, 0, 600, 1020, 600 )
+points = Vector2Array( 1020, 0, 1044, -24, 1044, 624, 1020, 600 )
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 1044, -24, 1044, 624, 1020, 600, 1020, 0 )
+points = Vector2Array( 1020, 600, 1044, 624, -36, 624, 0, 600 )
 
 [sub_resource type="ConvexPolygonShape2D" id=4]
 
 custom_solver_bias = 0.0
-points = Vector2Array( -24, -24, 1044, -24, 1020, 0, -24, 0 )
+points = Vector2Array( 0, 600, -36, 624, -36, -36, 0, 0 )
 
 [node name="main" type="Node"]
 
@@ -49,7 +49,7 @@ bounce = 0.0
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="level"]
 
 build_mode = 0
-polygon = Vector2Array( -24, -24, 1044, -24, 1044, 624, -24, 624, 0, 0, 0, 600, 1020, 600, 1020, 0, -24, 0 )
+polygon = Vector2Array( -36, -36, -36, 624, 1044, 624, 1044, -24, -24, -24, 0, 0, 1020, 0, 1020, 600, 0, 600, 0, 0 )
 shape_range = Vector2( 0, 3 )
 trigger = false
 

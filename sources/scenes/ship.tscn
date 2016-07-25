@@ -5,7 +5,7 @@
 [sub_resource type="CircleShape2D" id=2]
 
 custom_solver_bias = 0.0
-radius = 80.0
+radius = 60.0
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -39,6 +39,8 @@ script/script = ExtResource( 1 )
 
 [node name="hull" type="Polygon2D" parent="."]
 
+transform/pos = Vector2( 0.139132, -0.441064 )
+transform/scale = Vector2( 0.855621, 0.857775 )
 polygon = Vector2Array( -0.862045, -78.5794, 19.429, -75.4171, 38.4025, -67.775, 54.7407, -55.1261, 66.8626, -39.8419, 75.0318, -20.6049, 77.9305, 1.00372, 75.2953, 20.2407, 67.1261, 39.2141, 54.7407, 55.8159, 37.8754, 67.9378, 20.4831, 75.0529, -0.335007, 77.9516, -19.3085, 75.5799, -38.8089, 67.6743, -56.2013, 53.9713, -67.0056, 39.2141, -74.6477, 19.9772, -78.337, -0.0503693, -75.4382, -19.8144, -67.7962, -37.7337, -55.1472, -54.3355, -39.0725, -67.248, -20.8896, -75.1536 )
 uv = Vector2Array(  )
 color = Color( 1, 1, 1, 1 )
@@ -53,7 +55,6 @@ invert/border = 100.0
 
 [node name="hull_collision" type="CollisionShape2D" parent="."]
 
-visibility/visible = false
 shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
