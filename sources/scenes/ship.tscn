@@ -1,0 +1,237 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://scripts/ship.gd" type="Script" id=1]
+
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 80.0
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 90.0
+
+[node name="ship" type="RigidBody2D"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 1.0
+gravity_scale = 0.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+velocity/linear = Vector2( 0, 0 )
+velocity/angular = 0.0
+damp_override/linear = -1.0
+damp_override/angular = -1.0
+script/script = ExtResource( 1 )
+
+[node name="hull" type="Polygon2D" parent="."]
+
+polygon = Vector2Array( -0.862045, -78.5794, 19.429, -75.4171, 38.4025, -67.775, 54.7407, -55.1261, 66.8626, -39.8419, 75.0318, -20.6049, 77.9305, 1.00372, 75.2953, 20.2407, 67.1261, 39.2141, 54.7407, 55.8159, 37.8754, 67.9378, 20.4831, 75.0529, -0.335007, 77.9516, -19.3085, 75.5799, -38.8089, 67.6743, -56.2013, 53.9713, -67.0056, 39.2141, -74.6477, 19.9772, -78.337, -0.0503693, -75.4382, -19.8144, -67.7962, -37.7337, -55.1472, -54.3355, -39.0725, -67.248, -20.8896, -75.1536 )
+uv = Vector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="hull_collision" type="CollisionShape2D" parent="."]
+
+visibility/visible = false
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 0
+
+[node name="canons" type="Node2D" parent="."]
+
+[node name="canon_up" type="Node2D" parent="canons"]
+
+transform/pos = Vector2( 2.34446e-06, -70 )
+transform/rot = 90.0
+__meta__ = { "_edit_group_":true }
+
+[node name="polygon" type="Polygon2D" parent="canons/canon_up"]
+
+polygon = Vector2Array( -10, -10, 20, -10, 20, 10, -10, 10 )
+uv = Vector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="letter" type="Label" parent="canons/canon_up"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 10.0
+margin/top = -20.0
+margin/right = 50.0
+margin/bottom = -6.0
+text = "U"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="canon_down" type="Node2D" parent="canons"]
+
+transform/pos = Vector2( -7.54821e-07, 70 )
+transform/rot = -90.0
+__meta__ = { "_edit_group_":true }
+
+[node name="polygon" type="Polygon2D" parent="canons/canon_down"]
+
+polygon = Vector2Array( -10, -10, 20, -10, 20, 10, -10, 10 )
+uv = Vector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="letter" type="Label" parent="canons/canon_down"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 10.0
+margin/top = -20.0
+margin/right = 50.0
+margin/bottom = -6.0
+text = "D"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="canon_left" type="Node2D" parent="canons"]
+
+transform/pos = Vector2( -70, 0 )
+transform/rot = -180.0
+__meta__ = { "_edit_group_":true }
+
+[node name="polygon" type="Polygon2D" parent="canons/canon_left"]
+
+polygon = Vector2Array( -10, -10, 20, -10, 20, 10, -10, 10 )
+uv = Vector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="letter" type="Label" parent="canons/canon_left"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 10.0
+margin/top = -24.0
+margin/right = 50.0
+margin/bottom = -10.0
+text = "L"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="canon_right" type="Node2D" parent="canons"]
+
+transform/pos = Vector2( 70, 0 )
+__meta__ = { "_edit_group_":true }
+
+[node name="polygon" type="Polygon2D" parent="canons/canon_right"]
+
+polygon = Vector2Array( -10, -10, 20, -10, 20, 10, -10, 10 )
+uv = Vector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="letter" type="Label" parent="canons/canon_right"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 10.0
+margin/top = -20.0
+margin/right = 50.0
+margin/bottom = -6.0
+text = "R"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="shield" type="Area2D" parent="."]
+
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="polygon" type="Polygon2D" parent="shield"]
+
+transform/scale = Vector2( 1.1634, 1.15988 )
+polygon = Vector2Array( -0.862045, -78.5794, 19.429, -75.4171, 38.4025, -67.775, 54.7407, -55.1261, 66.8626, -39.8419, 75.0318, -20.6049, 77.9305, 1.00372, 75.2953, 20.2407, 67.1261, 39.2141, 54.7407, 55.8159, 37.8754, 67.9378, 20.4831, 75.0529, -0.335007, 77.9516, -19.3085, 75.5799, -38.8089, 67.6743, -56.2013, 53.9713, -67.0056, 39.2141, -74.6477, 19.9772, -78.337, -0.0503693, -75.4382, -19.8144, -67.7962, -37.7337, -55.1472, -54.3355, -39.0725, -67.248, -20.8896, -75.1536 )
+uv = Vector2Array(  )
+color = Color( 0.221176, 0.794932, 0.871094, 0.341709 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="shield_collision" type="CollisionShape2D" parent="shield"]
+
+visibility/visible = false
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Node2D" type="Node2D" parent="."]
+
+
