@@ -1,6 +1,16 @@
 
 extends RigidBody2D
+
+export var player = 1
+export var ship_recoil_multiplier = 2
+export var bullet_impulse_multiplier = 10
+
+signal died
+
+var shield_active = true
+
 var bullet = preload("res://scenes/bullet.tscn")
+var bullet_gd = preload("res://scripts/bullet.gd")
 
 onready var canons = get_node("canons")
 
@@ -9,27 +19,57 @@ onready var canon_down = canons.get_node("canon_down")
 onready var canon_left = canons.get_node("canon_left")
 onready var canon_right = canons.get_node("canon_right")
 
+onready var shield = get_node("shield")
+
+onready var cooldown = get_node("cooldown")
 
 func _ready():
 	set_process_input(true)
 
 func _input(event):
-	if event.is_pressed() :
-		print("input : ", get_global_pos())
-	if event.is_action_pressed("ui_up"):
+	if event.is_action_pressed("p" + str(player) + "_up"):
 		fire_canon(canon_up)
-	if event.is_action_pressed("ui_down"):
+	if event.is_action_pressed("p" + str(player) + "_down"):
 		fire_canon(canon_down)
-	if event.is_action_pressed("ui_left"):
+	if event.is_action_pressed("p" + str(player) + "_left"):
 		fire_canon(canon_left)
-	if event.is_action_pressed("ui_right"):
+	if event.is_action_pressed("p" + str(player) + "_right"):
 		fire_canon(canon_right)
 
 func fire_canon(canon):
-	var impulse = canon.get_global_pos() - get_global_pos()
-	apply_impulse(Vector2(0,0), -impulse)
-	var i_bullet = bullet.instance()
-	get_tree().get_root().get_node("main").add_child(i_bullet)
-	i_bullet.set_global_pos(canon.get_global_pos())
-	i_bullet.set_rot(canon.get_rot() + get_rot())
-	i_bullet.apply_impulse(Vector2(0,0), impulse * 10)
+	if shield_active :
+		set_shield_off()
+		var impulse = canon.get_global_pos() - get_global_pos()
+		apply_impulse(Vector2(0,0), -impulse * ship_recoil_multiplier)
+		var i_bullet = bullet.instance()
+		i_bullet.player = player
+		get_tree().get_root().get_node("main").add_child(i_bullet)
+		i_bullet.set_global_pos(canon.get_global_pos())
+		i_bullet.set_rot(canon.get_rot() + get_rot())
+		i_bullet.apply_impulse(Vector2(0,0), impulse * bullet_impulse_multiplier)
+		
+
+
+func set_shield_off():
+	shield.hide()
+	shield_active = false
+	cooldown.start()
+
+func set_shield_on():
+	shield.show()
+	shield_active = true
+
+func _on_cooldown_timeout():
+	set_shield_on()
+
+func _on_shield_body_enter( body ):
+	if shield_active:
+		body.queue_free()
+
+func _on_hitbox_body_enter( body ):
+	if not shield_active and body.player != player :
+		die()
+	
+func die():
+	queue_free()
+	emit_signal("died")

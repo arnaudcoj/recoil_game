@@ -2,20 +2,20 @@
 
 [ext_resource path="res://scripts/ship.gd" type="Script" id=1]
 
-[sub_resource type="CircleShape2D" id=2]
-
-custom_solver_bias = 0.0
-radius = 60.0
-
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 90.0
+radius = 39.0128
+
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 47.0
 
 [node name="ship" type="RigidBody2D"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 2 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -23,7 +23,7 @@ collision/mask = 1
 mode = 0
 mass = 1.0
 friction = 1.0
-bounce = 1.0
+bounce = 0.9
 gravity_scale = 0.0
 custom_integrator = false
 continuous_cd = 0
@@ -36,11 +36,21 @@ velocity/angular = 0.0
 damp_override/linear = -1.0
 damp_override/angular = -1.0
 script/script = ExtResource( 1 )
+player = 1
+ship_recoil_multiplier = 2
+bullet_impulse_multiplier = 10
+
+[node name="cooldown" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.2
+one_shot = false
+autostart = false
 
 [node name="hull" type="Polygon2D" parent="."]
 
-transform/pos = Vector2( 0.139132, -0.441064 )
-transform/scale = Vector2( 0.855621, 0.857775 )
+transform/pos = Vector2( 0.168495, 0.2897 )
+transform/scale = Vector2( 0.5, 0.5 )
 polygon = Vector2Array( -0.862045, -78.5794, 19.429, -75.4171, 38.4025, -67.775, 54.7407, -55.1261, 66.8626, -39.8419, 75.0318, -20.6049, 77.9305, 1.00372, 75.2953, 20.2407, 67.1261, 39.2141, 54.7407, 55.8159, 37.8754, 67.9378, 20.4831, 75.0529, -0.335007, 77.9516, -19.3085, 75.5799, -38.8089, 67.6743, -56.2013, 53.9713, -67.0056, 39.2141, -74.6477, 19.9772, -78.337, -0.0503693, -75.4382, -19.8144, -67.7962, -37.7337, -55.1472, -54.3355, -39.0725, -67.248, -20.8896, -75.1536 )
 uv = Vector2Array(  )
 color = Color( 1, 1, 1, 1 )
@@ -55,11 +65,14 @@ invert/border = 100.0
 
 [node name="hull_collision" type="CollisionShape2D" parent="."]
 
-shape = SubResource( 2 )
+visibility/visible = false
+shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
 [node name="canons" type="Node2D" parent="."]
+
+transform/scale = Vector2( 0.5, 0.5 )
 
 [node name="canon_up" type="Node2D" parent="canons"]
 
@@ -83,14 +96,15 @@ invert/border = 100.0
 
 [node name="letter" type="Label" parent="canons/canon_up"]
 
+rect/scale = Vector2( 3, 3 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 10.0
-margin/top = -20.0
-margin/right = 50.0
-margin/bottom = -6.0
+margin/left = 8.0
+margin/top = -46.0
+margin/right = 48.0
+margin/bottom = -32.0
 text = "U"
 percent_visible = 1.0
 lines_skipped = 0
@@ -118,14 +132,15 @@ invert/border = 100.0
 
 [node name="letter" type="Label" parent="canons/canon_down"]
 
+rect/scale = Vector2( 3, 3 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 10.0
-margin/top = -20.0
+margin/top = -44.0
 margin/right = 50.0
-margin/bottom = -6.0
+margin/bottom = -30.0
 text = "D"
 percent_visible = 1.0
 lines_skipped = 0
@@ -153,14 +168,15 @@ invert/border = 100.0
 
 [node name="letter" type="Label" parent="canons/canon_left"]
 
+rect/scale = Vector2( 3, 3 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 10.0
-margin/top = -24.0
-margin/right = 50.0
-margin/bottom = -10.0
+margin/left = 12.0
+margin/top = -46.0
+margin/right = 52.0
+margin/bottom = -32.0
 text = "L"
 percent_visible = 1.0
 lines_skipped = 0
@@ -187,14 +203,15 @@ invert/border = 100.0
 
 [node name="letter" type="Label" parent="canons/canon_right"]
 
+rect/scale = Vector2( 3, 3 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 10.0
-margin/top = -20.0
-margin/right = 50.0
-margin/bottom = -6.0
+margin/left = 6.0
+margin/top = -46.0
+margin/right = 46.0
+margin/bottom = -32.0
 text = "R"
 percent_visible = 1.0
 lines_skipped = 0
@@ -203,17 +220,19 @@ max_lines_visible = -1
 [node name="shield" type="Area2D" parent="."]
 
 input/pickable = true
-shapes/0/shape = SubResource( 1 )
+shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+collision/layers = 2
+collision/mask = 2
 
 [node name="polygon" type="Polygon2D" parent="shield"]
 
-transform/scale = Vector2( 1.1634, 1.15988 )
+transform/scale = Vector2( 0.6, 0.6 )
 polygon = Vector2Array( -0.862045, -78.5794, 19.429, -75.4171, 38.4025, -67.775, 54.7407, -55.1261, 66.8626, -39.8419, 75.0318, -20.6049, 77.9305, 1.00372, 75.2953, 20.2407, 67.1261, 39.2141, 54.7407, 55.8159, 37.8754, 67.9378, 20.4831, 75.0529, -0.335007, 77.9516, -19.3085, 75.5799, -38.8089, 67.6743, -56.2013, 53.9713, -67.0056, 39.2141, -74.6477, 19.9772, -78.337, -0.0503693, -75.4382, -19.8144, -67.7962, -37.7337, -55.1472, -54.3355, -39.0725, -67.248, -20.8896, -75.1536 )
 uv = Vector2Array(  )
 color = Color( 0.221176, 0.794932, 0.871094, 0.341709 )
@@ -229,10 +248,35 @@ invert/border = 100.0
 [node name="shield_collision" type="CollisionShape2D" parent="shield"]
 
 visibility/visible = false
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="hitbox" type="Area2D" parent="."]
+
+visibility/visible = false
+input/pickable = true
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision/layers = 2
+collision/mask = 2
+
+[node name="hitbox_collision" type="CollisionShape2D" parent="hitbox"]
+
+visibility/visible = false
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 0
+
+[connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]
+
+[connection signal="body_enter" from="shield" to="." method="_on_shield_body_enter"]
+
+[connection signal="body_enter" from="hitbox" to="." method="_on_hitbox_body_enter"]
 
 

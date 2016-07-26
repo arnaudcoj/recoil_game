@@ -1,9 +1,7 @@
 
 extends RigidBody2D
 
-# member variables here, example:
-# var a=2
-# var b="textvar"
+var player
 
 func _ready():
 	pass
