@@ -72,4 +72,4 @@ func _on_hitbox_body_enter( body ):
 	
 func die():
 	queue_free()
-	emit_signal("died")
+	emit_signal("died", player)
