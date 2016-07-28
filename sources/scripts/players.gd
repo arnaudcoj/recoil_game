@@ -3,11 +3,14 @@ extends Node2D
 
 var ship = preload("res://scenes/ship.tscn")
 
-export var players = [true, false, false, true]
+var players
 signal player_died
 
 func _ready():
-	spawn_players()
+	pass
+	
+func set_players(players):
+	self.players = players
 	
 func spawn_players():
 	for i in range(players.size()):
@@ -18,7 +21,7 @@ func spawn_player(player_idx):
 	var ship_inst = ship.instance()
 	ship_inst.player = player_idx + 1
 	ship_inst.connect("died", self, "_on_ship_died")
-	ship_inst.set_global_pos(get_tree().get_root().get_node("main/level/ship" + str(ship_inst.player)).get_global_pos())
+	ship_inst.set_global_pos(get_tree().get_root().get_node("main/game/level/ship" + str(ship_inst.player)).get_global_pos())
 	add_child(ship_inst)
 
 func get_first_alive_player_index():

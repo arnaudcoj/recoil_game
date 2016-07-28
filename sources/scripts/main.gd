@@ -1,23 +1,17 @@
 
 extends Node
 
-onready var players = get_node("players")
+var game_scn = preload("res://scenes/game.tscn")
 
 func _ready():
 	pass
 	
-func _on_players_player_died(player_idx):
-	print("player " + str(player_idx) + " diededed")
-	if players.get_alive_players_count() < 2 :
-		game_over()
+func start_game(players):
+	var game = game_scn.instance()
+	add_child(game)
+	game.set_players_list(players)
+	game.start()
+	
 
-func game_over():
-	var winner = players.get_first_alive_player_index()
-	if winner == 0 :
-		print("draw")
-	else :
-		print("player " + str(winner) + " won !")
-	restart()
-
-func restart():
-	get_tree().reload_current_scene()
+func _on_player_selection_start(players):
+	start_game(players)

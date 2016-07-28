@@ -25,6 +25,7 @@ onready var cooldown = get_node("cooldown")
 
 func _ready():
 	set_process_input(true)
+	get_node("player_name").set_text(str(player))
 
 func _input(event):
 	if event.is_action_pressed("p" + str(player) + "_up"):
@@ -43,7 +44,7 @@ func fire_canon(canon):
 		apply_impulse(Vector2(0,0), -impulse * ship_recoil_multiplier)
 		var i_bullet = bullet.instance()
 		i_bullet.player = player
-		get_tree().get_root().get_node("main").add_child(i_bullet)
+		controler.get_level().add_child(i_bullet)
 		i_bullet.set_global_pos(canon.get_global_pos())
 		i_bullet.set_rot(canon.get_rot() + get_rot())
 		i_bullet.apply_impulse(Vector2(0,0), impulse * bullet_impulse_multiplier)
