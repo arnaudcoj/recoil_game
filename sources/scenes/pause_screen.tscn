@@ -33,4 +33,27 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[node name="buttons" type="VButtonArray" parent="panel"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 396.0
+margin/top = 228.0
+margin/right = 372.0
+margin/bottom = 192.0
+button/count = 3
+button/min_button_size = -1.0
+button/align = 0
+button/0/text = "Resume"
+button/0/icon = null
+button/1/text = "Select Players"
+button/1/icon = null
+button/2/text = "Quit"
+button/2/icon = null
+button/selected = 0
+
 

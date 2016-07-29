@@ -3,6 +3,7 @@ extends Node2D
 
 var player_focus = 0
 onready var panel = get_node("panel")
+onready var buttons = panel.get_node("buttons")
 onready var pause_label = panel.get_node("pause_label")
 
 func _ready():
@@ -12,8 +13,15 @@ func _input(event):
 	# if the game is paused
 	if get_tree().is_paused():
 		# handle inputs of the player having focus
+		# start
 		if event.is_action_pressed("p" + str(player_focus) + "_start"):
 			unpause()
+		# up
+		elif event.is_action_pressed("p" + str(player_focus) + "_up"):
+			buttons.set_selected(max(0, buttons.get_selected() -1))
+		# down
+		elif event.is_action_pressed("p" + str(player_focus) + "_down"):
+			buttons.set_selected(min(buttons.get_button_count() - 1, buttons.get_selected() +1))
 	else:
 		# pause and give focus to the player who paused
 		if event.is_action_pressed("p1_start") && controler.get_players().is_alive(1):
