@@ -44,7 +44,7 @@ func fire_canon(canon):
 		apply_impulse(Vector2(0,0), -impulse * ship_recoil_multiplier)
 		var i_bullet = bullet.instance()
 		i_bullet.player = player
-		controler.get_level().add_child(i_bullet)
+		controler.get_level().add_bullet(i_bullet)
 		i_bullet.set_global_pos(canon.get_global_pos())
 		i_bullet.set_rot(canon.get_rot() + get_rot())
 		i_bullet.apply_impulse(Vector2(0,0), impulse * bullet_impulse_multiplier)

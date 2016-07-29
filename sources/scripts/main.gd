@@ -8,6 +8,8 @@ func _ready():
 	
 func start_game(players):
 	var game = game_scn.instance()
+	for child in get_children():
+		remove_child(child)
 	add_child(game)
 	game.set_players_list(players)
 	game.start()

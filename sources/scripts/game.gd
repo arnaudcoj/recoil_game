@@ -1,6 +1,7 @@
 
 extends Node
 
+onready var level = get_node("level")
 onready var players = get_node("players")
 
 var players_list
@@ -13,6 +14,8 @@ func set_players_list(players_list):
 	reset()
 
 func reset():
+	players.clear_players()
+	level.clear_bullets()
 	players.set_players(players_list)
 
 func start():
