@@ -8,17 +8,7 @@ onready var pause_screen = get_node("pause_screen")
 var players_list
 
 func _ready():
-	set_process_input(true)
-	
-func _input(event):
-	if event.is_action_pressed("p1_start") or event.is_action_pressed("p2_start") or event.is_action_pressed("p3_start") or event.is_action_pressed("p4_start"):
-		_on_pause_pressed()
-
-func _on_pause_pressed():
-	if get_tree().is_paused():
-		pause_screen.unpause()
-	else:
-		pause_screen.pause()
+	pass
 
 func set_players_list(players_list):
 	self.players_list = players_list

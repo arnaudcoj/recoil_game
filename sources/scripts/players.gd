@@ -34,6 +34,9 @@ func get_first_alive_player_index():
 		if players[i]:
 			return i + 1
 	return 0
+	
+func is_alive(player_idx):
+	return players[player_idx - 1]
 
 func get_alive_players_count():
 	var res = 0
