@@ -15,7 +15,7 @@ func _input(event):
 		# handle inputs of the player having focus
 		# start
 		if event.is_action_pressed("p" + str(player_focus) + "_start"):
-			unpause()
+			press_button()
 		# up
 		elif event.is_action_pressed("p" + str(player_focus) + "_up"):
 			buttons.set_selected(max(0, buttons.get_selected() -1))
@@ -42,3 +42,18 @@ func pause(player):
 func unpause():
 	get_tree().set_pause(false)
 	hide()
+
+func press_button():
+	var button_idx = buttons.get_selected()
+	# Resume
+	if button_idx == 0:
+		unpause()
+	# Player Selection
+	elif button_idx == 1:
+		unpause()
+		controler.get_main().go_to_player_selection()
+	#Quit
+	elif button_idx == 2:
+		unpause()
+		controler.get_main().go_to_starting_screen()
+
