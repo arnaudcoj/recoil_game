@@ -35,9 +35,19 @@ func _input(event):
 		
 	if event.is_action_pressed("p1_start") or event.is_action_pressed("p2_start") or event.is_action_pressed("p3_start") or event.is_action_pressed("p4_start"):
 		start()
-
-func _on_start_pressed():
-	start()
+		
+func get_players_list():
+	return [player1.is_pressed(), player2.is_pressed(), player3.is_pressed(), player4.is_pressed()]
+	
+func get_players_count():
+	var players = get_players_list()
+	var res = 0
+	for i in range(players.size()):
+		if players[i]:
+			res += 1
+	print(res)
+	return res
 
 func start():
-	emit_signal("start", [player1.is_pressed(), player2.is_pressed(), player3.is_pressed(), player4.is_pressed()])
+	if get_players_count() >= 2:
+		emit_signal("start", get_players_list())
