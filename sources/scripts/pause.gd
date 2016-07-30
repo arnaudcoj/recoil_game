@@ -6,6 +6,9 @@ onready var panel = get_node("panel")
 onready var buttons = panel.get_node("buttons")
 onready var pause_label = panel.get_node("pause_label")
 
+const ANALOG_THRESHOLD = 0.75
+var analog_cooldown = false
+
 func _ready():
 	set_process_input(true)
 
@@ -18,10 +21,24 @@ func _input(event):
 			press_button()
 		# up
 		elif event.is_action_pressed("p" + str(player_focus) + "_up"):
-			buttons.set_selected(max(0, buttons.get_selected() -1))
+			if event.type == InputEvent.JOYSTICK_MOTION:
+				if !analog_cooldown && event.value <= - ANALOG_THRESHOLD:
+					analog_cooldown = true
+					button_up()
+			else:
+				button_up()
+		elif event.is_action_released("p" + str(player_focus) + "_up"):
+			analog_cooldown = false
 		# down
 		elif event.is_action_pressed("p" + str(player_focus) + "_down"):
-			buttons.set_selected(min(buttons.get_button_count() - 1, buttons.get_selected() +1))
+			if event.type == InputEvent.JOYSTICK_MOTION:
+				if !analog_cooldown && event.value >= ANALOG_THRESHOLD:
+					analog_cooldown = true
+					button_down()
+			else:
+				button_down()
+		elif event.is_action_released("p" + str(player_focus) + "_down"):
+			analog_cooldown = false
 	else:
 		# pause and give focus to the player who paused
 		if event.is_action_pressed("p1_start") && controler.get_players().is_alive(1):
@@ -32,6 +49,12 @@ func _input(event):
 			pause(3)
 		elif event.is_action_pressed("p4_start") && controler.get_players().is_alive(4):
 			pause(4)
+
+func button_down():
+	buttons.set_selected(min(buttons.get_button_count() - 1, buttons.get_selected() +1))
+
+func button_up():
+	buttons.set_selected(max(0, buttons.get_selected() -1))
 
 func pause(player):
 	get_tree().set_pause(true)
