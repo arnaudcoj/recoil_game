@@ -9,9 +9,6 @@ signal died
 
 var shield_active = true
 
-var bullet = preload("res://scenes/bullet.tscn")
-var bullet_gd = preload("res://scripts/bullet.gd")
-
 onready var canons = get_node("canons")
 
 onready var canon_up = canons.get_node("canon_up")
@@ -22,6 +19,8 @@ onready var canon_right = canons.get_node("canon_right")
 onready var shield = get_node("shield")
 
 onready var cooldown = get_node("cooldown")
+
+onready var bullet_spawner = get_node("bullet_spawner")
 
 onready var skin = get_node("skin")
 
@@ -50,7 +49,7 @@ func fire_canon(canon):
 		set_shield_off()
 		var impulse = canon.get_global_pos() - get_global_pos()
 		apply_impulse(Vector2(0,0), -impulse * ship_recoil_multiplier)
-		var i_bullet = bullet.instance()
+		var i_bullet = bullet_spawner.get_bullet_instance()
 		i_bullet.player = player
 		controler.get_level().add_bullet(i_bullet)
 		i_bullet.set_global_pos(canon.get_global_pos())
