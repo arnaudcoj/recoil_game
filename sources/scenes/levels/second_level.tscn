@@ -85,7 +85,7 @@ process/pause_mode = 1
 
 polygon = Vector2Array( 1020, 0, 1020, 600, 0, 600, 24, 576, 996, 576, 996, 24 )
 uv = Vector2Array(  )
-color = Color( 0, 0.0822449, 0.957031, 1 )
+color = Color( 0.957031, 0.807495, 0, 1 )
 vertex_colors = ColorArray(  )
 offset = Vector2( 0, 0 )
 texture/texture = null
@@ -99,7 +99,7 @@ invert/border = 100.0
 
 polygon = Vector2Array( 1020, 0, 0, 0, 0, 600, 24, 576, 24, 24, 996, 24 )
 uv = Vector2Array(  )
-color = Color( 0.9375, 0, 0, 1 )
+color = Color( 0.196777, 0.8125, 0, 1 )
 vertex_colors = ColorArray(  )
 offset = Vector2( 0, 0 )
 texture/texture = null

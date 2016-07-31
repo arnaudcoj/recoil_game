@@ -11,6 +11,7 @@ var l2 = preload("res://scenes/levels/second_level.tscn")
 
 func _ready():
 	set_process_input(true)
+	change_level(level_switcher.get_current_level().instance())
 
 func _input(event):
 	if event.is_action_pressed("p1_right"):
@@ -27,18 +28,14 @@ func _on_player_start():
 	start()
 
 func next_level():
-	change_level(l2)
-#	skin_switcher.next_skin()
-#	change_skin(skin_switcher.get_current_skin().instance())
+	level_switcher.next_level()
+	change_level(level_switcher.get_current_level().instance())
 
 func previous_level():
-	change_level(l1)
-#	skin_switcher.previous_skin()
-#	change_skin(skin_switcher.get_current_skin().instance())
+	level_switcher.previous_level()
+	change_level(level_switcher.get_current_level().instance())
 
-func change_level(new_level_scn):
-	var new_level = new_level_scn.instance()
-	
+func change_level(new_level):
 	var level_pos = level.get_pos()
 	level.queue_free()
 	level = new_level
