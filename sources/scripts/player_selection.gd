@@ -12,7 +12,7 @@ func _ready():
 	
 func get_players_list():
 	return [player1.selected, player2.selected, player3.selected, player4.selected]
-	
+
 func get_players_skins():
 	return [player1.skin.duplicate(), player2.skin.duplicate(), player3.skin.duplicate(), player4.skin.duplicate()]
 	
@@ -31,5 +31,3 @@ func start():
 
 func _on_player_start():
 	start()
-
-

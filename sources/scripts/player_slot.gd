@@ -9,8 +9,7 @@ var selected = false
 
 onready var skin = get_node("skin")
 
-var blue_skin = preload("res://scenes/skins/blue_skin.tscn")
-var xb_skin = preload("res://scenes/skins/x_battleship.tscn")
+onready var skin_switcher = get_node("skin_switcher")
 
 func _ready():
 	set_selected(false)
@@ -33,10 +32,12 @@ func set_selected(boolean):
 	skin.set_hidden(!boolean)
 	
 func next_skin():
-	change_skin(xb_skin.instance())
+	skin_switcher.next_skin()
+	change_skin(skin_switcher.get_current_skin().instance())
 
 func previous_skin():
-	change_skin(blue_skin.instance())
+	skin_switcher.previous_skin()
+	change_skin(skin_switcher.get_current_skin().instance())
 
 func change_skin(new_skin):
 	var skin_pos = skin.get_pos()
