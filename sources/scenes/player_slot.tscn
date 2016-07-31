@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://scripts/player_slot.gd" type="Script" id=1]
+[ext_resource path="res://scenes/skins/blue_skin.tscn" type="PackedScene" id=2]
+
+[node name="player1" type="Node2D"]
+
+transform/pos = Vector2( 64, 0 )
+script/script = ExtResource( 1 )
+player_idx = 1
+
+[node name="skin" type="Node2D" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 76, 228 )
+
+

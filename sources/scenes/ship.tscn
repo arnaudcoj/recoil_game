@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://scripts/ship.gd" type="Script" id=1]
+[ext_resource path="res://scenes/skins/blue_skin.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -52,22 +53,6 @@ wait_time = 1.0
 one_shot = false
 autostart = false
 
-[node name="hull" type="Polygon2D" parent="."]
-
-transform/pos = Vector2( 0.168495, 0.2897 )
-transform/scale = Vector2( 0.5, 0.5 )
-polygon = Vector2Array( -0.862045, -78.5794, 19.429, -75.4171, 38.4025, -67.775, 54.7407, -55.1261, 66.8626, -39.8419, 75.0318, -20.6049, 77.9305, 1.00372, 75.2953, 20.2407, 67.1261, 39.2141, 54.7407, 55.8159, 37.8754, 67.9378, 20.4831, 75.0529, -0.335007, 77.9516, -19.3085, 75.5799, -38.8089, 67.6743, -56.2013, 53.9713, -67.0056, 39.2141, -74.6477, 19.9772, -78.337, -0.0503693, -75.4382, -19.8144, -67.7962, -37.7337, -55.1472, -54.3355, -39.0725, -67.248, -20.8896, -75.1536 )
-uv = Vector2Array(  )
-color = Color( 1, 1, 1, 1 )
-vertex_colors = ColorArray(  )
-offset = Vector2( 0, 0 )
-texture/texture = null
-texture/offset = Vector2( 0, 0 )
-texture/scale = Vector2( 1, 1 )
-texture/rotation = 0.0
-invert/enable = false
-invert/border = 100.0
-
 [node name="hull_collision" type="CollisionShape2D" parent="."]
 
 visibility/visible = false
@@ -99,7 +84,6 @@ max_lines_visible = -1
 
 [node name="canons" type="Node2D" parent="."]
 
-editor/display_folded = true
 transform/scale = Vector2( 0.5, 0.5 )
 
 [node name="canon_up" type="Node2D" parent="canons"]
@@ -107,20 +91,6 @@ transform/scale = Vector2( 0.5, 0.5 )
 transform/pos = Vector2( 2.34446e-06, -70 )
 transform/rot = 90.0
 __meta__ = { "_edit_group_":true }
-
-[node name="polygon" type="Polygon2D" parent="canons/canon_up"]
-
-polygon = Vector2Array( -10, -10, 20, -10, 20, 10, -10, 10 )
-uv = Vector2Array(  )
-color = Color( 1, 1, 1, 1 )
-vertex_colors = ColorArray(  )
-offset = Vector2( 0, 0 )
-texture/texture = null
-texture/offset = Vector2( 0, 0 )
-texture/scale = Vector2( 1, 1 )
-texture/rotation = 0.0
-invert/enable = false
-invert/border = 100.0
 
 [node name="letter" type="Label" parent="canons/canon_up"]
 
@@ -144,20 +114,6 @@ transform/pos = Vector2( -7.54821e-07, 70 )
 transform/rot = -90.0
 __meta__ = { "_edit_group_":true }
 
-[node name="polygon" type="Polygon2D" parent="canons/canon_down"]
-
-polygon = Vector2Array( -10, -10, 20, -10, 20, 10, -10, 10 )
-uv = Vector2Array(  )
-color = Color( 1, 1, 1, 1 )
-vertex_colors = ColorArray(  )
-offset = Vector2( 0, 0 )
-texture/texture = null
-texture/offset = Vector2( 0, 0 )
-texture/scale = Vector2( 1, 1 )
-texture/rotation = 0.0
-invert/enable = false
-invert/border = 100.0
-
 [node name="letter" type="Label" parent="canons/canon_down"]
 
 rect/scale = Vector2( 3, 3 )
@@ -180,20 +136,6 @@ transform/pos = Vector2( -70, 0 )
 transform/rot = -180.0
 __meta__ = { "_edit_group_":true }
 
-[node name="polygon" type="Polygon2D" parent="canons/canon_left"]
-
-polygon = Vector2Array( -10, -10, 20, -10, 20, 10, -10, 10 )
-uv = Vector2Array(  )
-color = Color( 1, 1, 1, 1 )
-vertex_colors = ColorArray(  )
-offset = Vector2( 0, 0 )
-texture/texture = null
-texture/offset = Vector2( 0, 0 )
-texture/scale = Vector2( 1, 1 )
-texture/rotation = 0.0
-invert/enable = false
-invert/border = 100.0
-
 [node name="letter" type="Label" parent="canons/canon_left"]
 
 rect/scale = Vector2( 3, 3 )
@@ -215,20 +157,6 @@ max_lines_visible = -1
 transform/pos = Vector2( 70, 0 )
 __meta__ = { "_edit_group_":true }
 
-[node name="polygon" type="Polygon2D" parent="canons/canon_right"]
-
-polygon = Vector2Array( -10, -10, 20, -10, 20, 10, -10, 10 )
-uv = Vector2Array(  )
-color = Color( 1, 1, 1, 1 )
-vertex_colors = ColorArray(  )
-offset = Vector2( 0, 0 )
-texture/texture = null
-texture/offset = Vector2( 0, 0 )
-texture/scale = Vector2( 1, 1 )
-texture/rotation = 0.0
-invert/enable = false
-invert/border = 100.0
-
 [node name="letter" type="Label" parent="canons/canon_right"]
 
 rect/scale = Vector2( 3, 3 )
@@ -247,7 +175,7 @@ max_lines_visible = -1
 
 [node name="shield" type="Area2D" parent="."]
 
-editor/display_folded = true
+visibility/visible = false
 input/pickable = true
 shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -259,24 +187,8 @@ angular_damp = 1.0
 collision/layers = 2
 collision/mask = 2
 
-[node name="polygon" type="Polygon2D" parent="shield"]
-
-transform/scale = Vector2( 0.6, 0.6 )
-polygon = Vector2Array( -0.862045, -78.5794, 19.429, -75.4171, 38.4025, -67.775, 54.7407, -55.1261, 66.8626, -39.8419, 75.0318, -20.6049, 77.9305, 1.00372, 75.2953, 20.2407, 67.1261, 39.2141, 54.7407, 55.8159, 37.8754, 67.9378, 20.4831, 75.0529, -0.335007, 77.9516, -19.3085, 75.5799, -38.8089, 67.6743, -56.2013, 53.9713, -67.0056, 39.2141, -74.6477, 19.9772, -78.337, -0.0503693, -75.4382, -19.8144, -67.7962, -37.7337, -55.1472, -54.3355, -39.0725, -67.248, -20.8896, -75.1536 )
-uv = Vector2Array(  )
-color = Color( 0.221176, 0.794932, 0.871094, 0.341709 )
-vertex_colors = ColorArray(  )
-offset = Vector2( 0, 0 )
-texture/texture = null
-texture/offset = Vector2( 0, 0 )
-texture/scale = Vector2( 1, 1 )
-texture/rotation = 0.0
-invert/enable = false
-invert/border = 100.0
-
 [node name="shield_collision" type="CollisionShape2D" parent="shield"]
 
-visibility/visible = false
 shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
@@ -300,6 +212,8 @@ collision/mask = 2
 shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
+
+[node name="skin" parent="." instance=ExtResource( 2 )]
 
 [connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]
 

@@ -1,0 +1,103 @@
+[gd_scene format=1]
+
+[node name="skin" type="Node2D"]
+
+[node name="hull" type="Polygon2D" parent="."]
+
+transform/pos = Vector2( 0.168495, 0.2897 )
+transform/scale = Vector2( 0.5, 0.5 )
+polygon = Vector2Array( -0.862045, -78.5794, 19.429, -75.4171, 38.4025, -67.775, 54.7407, -55.1261, 66.8626, -39.8419, 75.0318, -20.6049, 77.9305, 1.00372, 75.2953, 20.2407, 67.1261, 39.2141, 54.7407, 55.8159, 37.8754, 67.9378, 20.4831, 75.0529, -0.335007, 77.9516, -19.3085, 75.5799, -38.8089, 67.6743, -56.2013, 53.9713, -67.0056, 39.2141, -74.6477, 19.9772, -78.337, -0.0503693, -75.4382, -19.8144, -67.7962, -37.7337, -55.1472, -54.3355, -39.0725, -67.248, -20.8896, -75.1536 )
+uv = Vector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="right_canon" type="Polygon2D" parent="."]
+
+transform/pos = Vector2( 35, 0 )
+transform/scale = Vector2( 0.5, 0.5 )
+polygon = Vector2Array( -10, -10, 20, -10, 20, 10, -10, 10 )
+uv = Vector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="left_canon" type="Polygon2D" parent="."]
+
+transform/pos = Vector2( -35, 0 )
+transform/rot = 180.0
+transform/scale = Vector2( 0.5, 0.5 )
+polygon = Vector2Array( -10, -10, 20, -10, 20, 10, -10, 10 )
+uv = Vector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="down_canon" type="Polygon2D" parent="."]
+
+transform/pos = Vector2( -3.7741e-07, 35 )
+transform/rot = -90.0
+transform/scale = Vector2( 0.5, 0.5 )
+polygon = Vector2Array( -10, -10, 20, -10, 20, 10, -10, 10 )
+uv = Vector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="up_canon" type="Polygon2D" parent="."]
+
+transform/pos = Vector2( 1.17223e-06, -35 )
+transform/rot = 90.0
+transform/scale = Vector2( 0.5, 0.5 )
+polygon = Vector2Array( -10, -10, 20, -10, 20, 10, -10, 10 )
+uv = Vector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+[node name="shield" type="Polygon2D" parent="."]
+
+transform/scale = Vector2( 0.6, 0.6 )
+polygon = Vector2Array( -0.862045, -78.5794, 19.429, -75.4171, 38.4025, -67.775, 54.7407, -55.1261, 66.8626, -39.8419, 75.0318, -20.6049, 77.9305, 1.00372, 75.2953, 20.2407, 67.1261, 39.2141, 54.7407, 55.8159, 37.8754, 67.9378, 20.4831, 75.0529, -0.335007, 77.9516, -19.3085, 75.5799, -38.8089, 67.6743, -56.2013, 53.9713, -67.0056, 39.2141, -74.6477, 19.9772, -78.337, -0.0503693, -75.4382, -19.8144, -67.7962, -37.7337, -55.1472, -54.3355, -39.0725, -67.248, -20.8896, -75.1536 )
+uv = Vector2Array(  )
+color = Color( 0.221176, 0.794932, 0.871094, 0.341709 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
+
+

@@ -23,6 +23,8 @@ onready var shield = get_node("shield")
 
 onready var cooldown = get_node("cooldown")
 
+onready var skin = get_node("skin")
+
 func _ready():
 	set_process_input(true)
 	get_node("player_name").set_text(str(player))
@@ -52,12 +54,12 @@ func fire_canon(canon):
 
 
 func set_shield_off():
-	shield.hide()
+	skin.get_node("shield").hide()
 	shield_active = false
 	cooldown.start()
 
 func set_shield_on():
-	shield.show()
+	skin.get_node("shield").show()
 	shield_active = true
 
 func _on_cooldown_timeout():
