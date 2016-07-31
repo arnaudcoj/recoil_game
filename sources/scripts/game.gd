@@ -6,18 +6,20 @@ onready var players = get_node("players")
 onready var pause_screen = get_node("pause_screen")
 
 var players_list
+var players_skins
 
 func _ready():
 	pass
 
-func set_players_list(players_list):
+func set_players_list(players_list, players_skins):
 	self.players_list = players_list
+	self.players_skins = players_skins
 	reset()
 
 func reset():
 	players.clear_players()
 	level.clear_bullets()
-	players.set_players(players_list)
+	players.set_players(players_list, players_skins)
 
 func start():
 	players.spawn_players()

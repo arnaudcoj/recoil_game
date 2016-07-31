@@ -4,14 +4,16 @@ extends Node2D
 var ship = preload("res://scenes/ship.tscn")
 
 var players
+var players_skins
 
 signal player_died
 
 func _ready():
 	pass
 	
-func set_players(players):
+func set_players(players, players_skins):
 	self.players = [] + players #duplicate
+	self.players_skins = [] + players_skins #duplicate
 	
 func clear_players():
 	for child in get_children():
@@ -28,6 +30,7 @@ func spawn_player(player_idx):
 	ship_inst.connect("died", self, "_on_ship_died")
 	ship_inst.set_global_pos(controler.get_level().get_node("ship" + str(ship_inst.player)).get_global_pos())
 	add_child(ship_inst)
+	ship_inst.change_skin(players_skins[player_idx])
 
 func get_first_alive_player_index():
 	for i in range(players.size()):

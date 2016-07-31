@@ -22,16 +22,16 @@ func go_to_player_selection():
 		child.queue_free()
 	add_child(player_selection)
 	
-func start_game(players):
+func start_game(players, players_skins):
 	var game = game_scn.instance()
 	for child in get_children():
 		child.queue_free()
 	add_child(game)
-	game.set_players_list(players)
+	game.set_players_list(players, players_skins)
 	game.start()
 
-func _on_player_selection_start(players):
-	start_game(players)
+func _on_player_selection_start(players, players_skins):
+	start_game(players, players_skins)
 
 func _on_starting_screen_start_pressed():
 	go_to_player_selection()

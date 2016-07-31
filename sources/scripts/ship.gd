@@ -29,6 +29,12 @@ func _ready():
 	set_process_input(true)
 	get_node("player_name").set_text(str(player))
 
+func change_skin(new_skin):
+	skin.queue_free()
+	add_child(new_skin)
+	skin = new_skin
+	skin.set_pos(Vector2(0,0))
+
 func _input(event):
 	if event.is_action_pressed("p" + str(player) + "_up"):
 		fire_canon(canon_up)
