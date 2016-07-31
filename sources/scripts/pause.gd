@@ -74,9 +74,13 @@ func press_button():
 	# Player Selection
 	elif button_idx == 1:
 		unpause()
+		controler.get_main().go_to_level_selection()
+	# Player Selection
+	elif button_idx == 2:
+		unpause()
 		controler.get_main().go_to_player_selection()
 	#Quit
-	elif button_idx == 2:
+	elif button_idx == 3:
 		unpause()
 		controler.get_main().go_to_starting_screen()
 

@@ -7,6 +7,7 @@ onready var pause_screen = get_node("pause_screen")
 
 var players_list
 var players_skins
+var new_level
 
 func _ready():
 	pass
@@ -14,12 +15,21 @@ func _ready():
 func set_players_list(players_list, players_skins):
 	self.players_list = players_list
 	self.players_skins = players_skins
-	reset()
+	
+func set_level(new_level):
+	self.new_level = new_level
 
 func reset():
 	players.clear_players()
-	level.clear_bullets()
 	players.set_players(players_list, players_skins)
+	load_level()
+	
+func load_level():
+	var level_pos = level.get_pos()
+	level.queue_free()
+	level = new_level.duplicate()
+	level.set_pos(level_pos)
+	add_child(level)
 
 func start():
 	players.spawn_players()

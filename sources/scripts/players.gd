@@ -30,7 +30,7 @@ func spawn_player(player_idx):
 	ship_inst.connect("died", self, "_on_ship_died")
 	ship_inst.set_global_pos(controler.get_level().get_node("ship" + str(ship_inst.player)).get_global_pos())
 	add_child(ship_inst)
-	ship_inst.change_skin(players_skins[player_idx])
+	ship_inst.change_skin(players_skins[player_idx].duplicate())
 
 func get_first_alive_player_index():
 	for i in range(players.size()):

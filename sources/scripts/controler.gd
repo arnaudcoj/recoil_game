@@ -13,7 +13,7 @@ func get_game():
 	return main.get_node("game")
 	
 func get_level():
-	return main.get_node("game/level")
+	return main.get_node("game").level
 	
 func get_players():
 	return main.get_node("game/players")
