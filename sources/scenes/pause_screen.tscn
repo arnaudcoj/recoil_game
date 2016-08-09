@@ -45,17 +45,28 @@ margin/left = 396.0
 margin/top = 228.0
 margin/right = 372.0
 margin/bottom = 192.0
-button/count = 4
+button/count = 5
 button/min_button_size = -1.0
 button/align = 0
 button/0/text = "Resume"
 button/0/icon = null
-button/1/text = "Select Level"
+button/1/text = "Restart"
 button/1/icon = null
-button/2/text = "Select Players"
+button/2/text = "Select Level"
 button/2/icon = null
-button/3/text = "Quit"
+button/3/text = "Select Player"
 button/3/icon = null
+button/4/text = "Quit"
+button/4/icon = null
 button/selected = 0
+
+[node name="cooldown" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]
 
 

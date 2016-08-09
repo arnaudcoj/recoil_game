@@ -4,6 +4,7 @@ extends Node
 onready var level = get_node("level")
 onready var players = get_node("players")
 onready var pause_screen = get_node("pause_screen")
+onready var game_over_screen = get_node("game_over_screen")
 
 var players_list
 var players_skins
@@ -22,6 +23,8 @@ func set_level(new_level):
 func reset():
 	players.clear_players()
 	players.set_players(players_list, players_skins)
+	pause_screen.unpause()
+	game_over_screen.deactivate()
 	load_level()
 	
 func load_level():
@@ -41,12 +44,11 @@ func _on_players_player_died(player_idx):
 
 func game_over():
 	var winner = players.get_first_alive_player_index()
-	if winner == 0 :
-		print("draw")
-	else :
-		print("player " + str(winner) + " won !")
-	restart()
+	game_over_screen.activate(winner)
 
 func restart():
 	reset()
 	start()
+
+func _on_restart():
+	restart()

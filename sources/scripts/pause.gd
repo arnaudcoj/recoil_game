@@ -1,20 +1,28 @@
 
 extends Node2D
 
+var enabled = false
+
 var player_focus = 0
 onready var panel = get_node("panel")
 onready var buttons = panel.get_node("buttons")
 onready var pause_label = panel.get_node("pause_label")
+onready var cooldown = get_node("cooldown")
 
 const ANALOG_THRESHOLD = 0.75
 var analog_cooldown = false
+
+signal restart
 
 func _ready():
 	set_process_input(true)
 
 func _input(event):
+	if !enabled:
+		print("loul")
+		return
 	# if the game is paused
-	if get_tree().is_paused():
+	if is_paused():
 		# handle inputs of the player having focus
 		# start
 		if event.is_action_pressed("p" + str(player_focus) + "_start"):
@@ -65,22 +73,33 @@ func pause(player):
 func unpause():
 	get_tree().set_pause(false)
 	hide()
+	enabled = false
+	cooldown.start()
+	
+func is_paused():
+	return !is_hidden()
 
 func press_button():
 	var button_idx = buttons.get_selected()
 	# Resume
 	if button_idx == 0:
 		unpause()
-	# Player Selection
-	elif button_idx == 1:
+	# Resume
+	if button_idx == 1:
 		unpause()
-		controler.get_main().go_to_level_selection()
+		emit_signal("restart")
 	# Player Selection
 	elif button_idx == 2:
 		unpause()
+		controler.get_main().go_to_level_selection()
+	# Player Selection
+	elif button_idx == 3:
+		unpause()
 		controler.get_main().go_to_player_selection()
 	#Quit
-	elif button_idx == 3:
+	elif button_idx == 4:
 		unpause()
 		controler.get_main().go_to_starting_screen()
 
+func _on_cooldown_timeout():
+	enabled = true
