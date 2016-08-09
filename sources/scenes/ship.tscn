@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://scripts/ship.gd" type="Script" id=1]
-[ext_resource path="res://scenes/skins/blue_skin.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/bullet_spawner.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/ship_canon.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/skins/blue_skin.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/bullet_spawner.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -44,8 +45,6 @@ damp_override/linear = -1.0
 damp_override/angular = -1.0
 script/script = ExtResource( 1 )
 player = 1
-ship_recoil_multiplier = 6
-bullet_impulse_multiplier = 10
 
 [node name="cooldown" type="Timer" parent="."]
 
@@ -87,92 +86,19 @@ max_lines_visible = -1
 
 transform/scale = Vector2( 0.5, 0.5 )
 
-[node name="canon_up" type="Node2D" parent="canons"]
+[node name="canon_up" parent="canons" instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 2.34446e-06, -70 )
+[node name="canon_down" parent="canons" instance=ExtResource( 2 )]
+
+transform/rot = 180.0
+
+[node name="canon_left" parent="canons" instance=ExtResource( 2 )]
+
 transform/rot = 90.0
-__meta__ = { "_edit_group_":true }
 
-[node name="letter" type="Label" parent="canons/canon_up"]
+[node name="canon_right" parent="canons" instance=ExtResource( 2 )]
 
-rect/scale = Vector2( 3, 3 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 8.0
-margin/top = -46.0
-margin/right = 48.0
-margin/bottom = -32.0
-text = "U"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="canon_down" type="Node2D" parent="canons"]
-
-transform/pos = Vector2( -7.54821e-07, 70 )
-transform/rot = -90.0
-__meta__ = { "_edit_group_":true }
-
-[node name="letter" type="Label" parent="canons/canon_down"]
-
-rect/scale = Vector2( 3, 3 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 10.0
-margin/top = -44.0
-margin/right = 50.0
-margin/bottom = -30.0
-text = "D"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="canon_left" type="Node2D" parent="canons"]
-
-transform/pos = Vector2( -70, 0 )
-transform/rot = -180.0
-__meta__ = { "_edit_group_":true }
-
-[node name="letter" type="Label" parent="canons/canon_left"]
-
-rect/scale = Vector2( 3, 3 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 12.0
-margin/top = -46.0
-margin/right = 52.0
-margin/bottom = -32.0
-text = "L"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="canon_right" type="Node2D" parent="canons"]
-
-transform/pos = Vector2( 70, 0 )
-__meta__ = { "_edit_group_":true }
-
-[node name="letter" type="Label" parent="canons/canon_right"]
-
-rect/scale = Vector2( 3, 3 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 6.0
-margin/top = -46.0
-margin/right = 46.0
-margin/bottom = -32.0
-text = "R"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
+transform/rot = 270.0
 
 [node name="shield" type="Area2D" parent="."]
 
@@ -214,9 +140,9 @@ shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 
-[node name="skin" parent="." instance=ExtResource( 2 )]
+[node name="skin" parent="." instance=ExtResource( 3 )]
 
-[node name="bullet_spawner" parent="." instance=ExtResource( 3 )]
+[node name="bullet_spawner" parent="." instance=ExtResource( 4 )]
 
 [connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]
 

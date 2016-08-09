@@ -1,7 +1,7 @@
 
 extends Node
 
-var bullet = preload("res://scenes/bullets/yellow_bullet.tscn")
+var bullet = preload("res://scenes/bullets/red_bullet.tscn")
 
 func _ready():
 	pass

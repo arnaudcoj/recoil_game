@@ -2,8 +2,6 @@
 extends RigidBody2D
 
 export var player = 1
-export var ship_recoil_multiplier = 2
-export var bullet_impulse_multiplier = 10
 
 signal died
 
@@ -45,19 +43,10 @@ func _input(event):
 		fire_canon(canon_right)
 
 func fire_canon(canon):
-	if shield_active :
+	if canon.can_fire() :
 		set_shield_off()
-		var impulse = canon.get_global_pos() - get_global_pos()
-		apply_impulse(Vector2(0,0), -impulse * ship_recoil_multiplier)
-		var i_bullet = bullet_spawner.get_bullet_instance()
-		i_bullet.player = player
-		controler.get_level().add_bullet(i_bullet)
-		i_bullet.set_global_pos(canon.get_global_pos())
-		i_bullet.set_rot(canon.get_rot() + get_rot())
-		i_bullet.apply_impulse(Vector2(0,0), impulse * bullet_impulse_multiplier)
+		canon.fire(bullet_spawner.get_bullet_instance(), player)
 		
-
-
 func set_shield_off():
 	skin.get_node("shield").hide()
 	shield_active = false
