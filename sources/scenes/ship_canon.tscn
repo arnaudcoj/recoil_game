@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=3 format=1]
 
 [ext_resource path="res://scripts/ship_canon.gd" type="Script" id=1]
+
+[sub_resource type="ColorRamp" id=1]
+
+offsets = FloatArray( 0, 1 )
+colors = ColorArray( 1, 0, 0, 1, 0.234375, 0, 0, 1 )
 
 [node name="canon" type="Node2D"]
 
@@ -18,6 +23,35 @@ process_mode = 1
 wait_time = 0.5
 one_shot = false
 autostart = false
+
+[node name="shot_particles" type="Particles2D" parent="."]
+
+transform/pos = Vector2( -1.90735e-06, -70 )
+transform/rot = 180.0
+config/amount = 32
+config/lifetime = 1.0
+config/preprocess = 0.1
+config/emit_timeout = 0.3
+config/emitting = false
+config/half_extents = Vector2( 5, 0 )
+config/explosiveness = 0.0788701
+params/direction = 0.0
+params/spread = 15.95
+params/linear_velocity = 24.05
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 9.8
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 1.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+color/color_ramp = SubResource( 1 )
 
 [connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]
 

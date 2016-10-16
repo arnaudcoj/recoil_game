@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://scripts/ship.gd" type="Script" id=1]
 [ext_resource path="res://scenes/ship_canon.tscn" type="PackedScene" id=2]
@@ -19,6 +19,11 @@ radius = 47.0
 
 custom_solver_bias = 0.0
 radius = 33.0606
+
+[sub_resource type="ColorRamp" id=4]
+
+offsets = FloatArray( 0, 0.672515, 1 )
+colors = ColorArray( 0.195313, 0, 1, 1, 0.910156, 0.320088, 0.24176, 1, 0.984619, 1, 0.507813, 1 )
 
 [node name="ship" type="RigidBody2D"]
 
@@ -143,6 +148,34 @@ _update_shape_index = 0
 [node name="skin" parent="." instance=ExtResource( 3 )]
 
 [node name="bullet_spawner" parent="." instance=ExtResource( 4 )]
+
+[node name="hit_particles" type="Particles2D" parent="."]
+
+config/amount = 63
+config/lifetime = 3.9
+config/preprocess = 0.4
+config/emit_timeout = 0.5
+config/emitting = false
+config/local_space = false
+config/explosiveness = 0.08
+params/direction = 2.45
+params/spread = 180.0
+params/linear_velocity = 100.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 0.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 2.8
+params/final_size = 0.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+color/color = Color( 0.589844, 0.517805, 0.188934, 1 )
+color/color_ramp = SubResource( 4 )
 
 [connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]
 

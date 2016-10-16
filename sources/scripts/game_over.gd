@@ -47,10 +47,12 @@ func button_down():
 func button_up():
 	buttons.set_selected(max(0, buttons.get_selected() -1))
 
-func activate(winner):
-	get_tree().set_pause(true)
+func set_winner(winner):
 	if winner:
 		winner_label.set_text("PLAYER " + str(winner) + " WON!")
+
+func activate():
+	get_tree().set_pause(true)
 	show()
 	
 func deactivate():

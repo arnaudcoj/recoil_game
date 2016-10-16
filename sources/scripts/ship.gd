@@ -6,6 +6,7 @@ export var player = 1
 signal died
 
 var shield_active = true
+var life = 3
 
 onready var canons = get_node("canons")
 
@@ -21,6 +22,8 @@ onready var cooldown = get_node("cooldown")
 onready var bullet_spawner = get_node("bullet_spawner")
 
 onready var skin = get_node("skin")
+
+onready var hit_particles = get_node("hit_particles")
 
 func _ready():
 	set_process_input(true)
@@ -65,6 +68,15 @@ func _on_shield_body_enter( body ):
 
 func _on_hitbox_body_enter( body ):
 	if not shield_active and body.player != player :
+		get_hurt(body)
+		body.queue_free()
+		
+func get_hurt(bullet):
+	#todo bullet strength
+	life -= 1
+	hit_particles.set_global_pos(bullet.get_global_pos())
+	hit_particles.set_emitting(true)
+	if life == 0:
 		die()
 	
 func die():

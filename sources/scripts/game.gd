@@ -5,6 +5,7 @@ onready var level = get_node("level")
 onready var players = get_node("players")
 onready var pause_screen = get_node("pause_screen")
 onready var game_over_screen = get_node("game_over_screen")
+onready var game_over_timer = get_node("game_over_timer")
 
 var players_list
 var players_skins
@@ -39,12 +40,13 @@ func start():
 
 func _on_players_player_died(player_idx):
 	print("player " + str(player_idx) + " diededed")
-	if players.get_alive_players_count() < 2 :
+	if players.get_alive_players_count() == 1 :
 		game_over()
 
 func game_over():
+	game_over_timer.start()
 	var winner = players.get_first_alive_player_index()
-	game_over_screen.activate(winner)
+	game_over_screen.set_winner(winner)
 
 func restart():
 	reset()
@@ -52,3 +54,6 @@ func restart():
 
 func _on_restart():
 	restart()
+
+func _on_game_over_timer_timeout():
+	game_over_screen.activate()
