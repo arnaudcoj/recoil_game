@@ -26,10 +26,19 @@ z/z = 1
 
 visibility/visible = false
 
+[node name="game_over_timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
 [connection signal="player_died" from="players" to="." method="_on_players_player_died"]
 
 [connection signal="restart" from="pause_screen" to="." method="_on_restart"]
 
 [connection signal="restart" from="game_over_screen" to="." method="_on_restart"]
+
+[connection signal="timeout" from="game_over_timer" to="." method="_on_game_over_timer_timeout"]
 
 

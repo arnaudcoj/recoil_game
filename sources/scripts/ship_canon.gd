@@ -3,6 +3,7 @@ extends Node2D
 
 onready var position = get_node("position")
 onready var cooldown = get_node("cooldown")
+onready var shot_particles = get_node("shot_particles")
 
 var operational = true
 
@@ -23,6 +24,7 @@ func fire(i_bullet, player):
 
 		i_bullet.shoot()
 		controler.get_level().add_bullet(i_bullet)
+		shot_particles.set_emitting(true)
 		
 		
 		operational = false
