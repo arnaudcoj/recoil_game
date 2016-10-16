@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://scripts/level_selection.gd" type="Script" id=1]
 [ext_resource path="res://scripts/level_switcher.gd" type="Script" id=2]
+[ext_resource path="res://assets/fonts/origicide80.fnt" type="BitmapFont" id=3]
 
 [node name="level_selection" type="Panel"]
 
@@ -23,7 +24,7 @@ script/script = ExtResource( 2 )
 
 [node name="level" type="Node2D" parent="."]
 
-transform/pos = Vector2( 108, 80 )
+transform/pos = Vector2( 144, 125 )
 transform/scale = Vector2( 0.5, 0.5 )
 
 [node name="screen_name" type="Label" parent="."]
@@ -32,10 +33,11 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 320.0
-margin/top = 16.0
-margin/right = 417.0
-margin/bottom = 30.0
+margin/left = 38.0
+margin/top = 4.0
+margin/right = 732.0
+margin/bottom = 92.0
+custom_fonts/font = ExtResource( 3 )
 text = "Level Selection"
 percent_visible = 1.0
 lines_skipped = 0
