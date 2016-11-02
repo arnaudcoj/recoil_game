@@ -34,6 +34,7 @@ config/preprocess = 0.1
 config/emit_timeout = 0.3
 config/emitting = false
 config/half_extents = Vector2( 5, 0 )
+config/local_space = false
 config/explosiveness = 0.0788701
 params/direction = 0.0
 params/spread = 15.95
