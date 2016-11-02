@@ -22,7 +22,7 @@ func get_players_count():
 	for i in range(players.size()):
 		if players[i]:
 			res += 1
-	print(res)
+	#print(res)
 	return res
 
 func start():

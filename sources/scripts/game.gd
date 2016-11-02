@@ -39,7 +39,7 @@ func start():
 	players.spawn_players()
 
 func _on_players_player_died(player_idx):
-	print("player " + str(player_idx) + " diededed")
+	#print("player " + str(player_idx) + " diededed")
 	if players.get_alive_players_count() == 1 :
 		game_over()
 

@@ -19,7 +19,6 @@ func _ready():
 
 func _input(event):
 	if !enabled:
-		print("loul")
 		return
 	# if the game is paused
 	if is_paused():
